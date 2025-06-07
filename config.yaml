@@ -1,0 +1,13 @@
+auto_backup:
+  max_backups: 1
+
+log_level: debug
+
+devices:
+  Alley camera:
+    hostname: alley-cam.lan
+    password: 5up3r-53cur3-p455w0rd
+
+  Front door camera:
+    hostname: front-door-cam.lan
+    password: hunter2

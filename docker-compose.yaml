@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  thingino-backup:
+    image: tediore/thingino-backup:stable
+    container_name: thingino-backup
+    restart: 'unless-stopped'
+    volumes:
+    - /opt/thingino:/thingino
+    - /etc/localtime:/etc/localtime:ro
