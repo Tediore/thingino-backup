@@ -38,7 +38,7 @@ services:
     restart: 'unless-stopped'
     volumes:
     - /opt/thingino:/thingino # config.yaml must be located in whatever directory you map to /thingino (in this example, /opt/thingino/config.yaml)
-    - /etc/localtime:/etc/localtime:ro # Optional, but ensures logs have the correct timestamp
+    - /etc/localtime:/etc/localtime:ro # Optional, but ensures backups occur at local time
 ```
 2. `docker-compose up -d thingino-backup`
 
