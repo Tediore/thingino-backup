@@ -49,13 +49,19 @@ class ThinginoDevice:
         self.devices[dev_name]['password'] = devices[dev_name]['password']
         self.devices[dev_name]['backup_dir'] = f'{backup_root}{dev_name.lower().replace(" ","-")}'
 
-    def create_dirs(self):
+    def create_dirs(self, dev_name):
         """Create backup directories if they don't already exist"""
-        for device in self.devices.keys():
-            dir = self.devices[device]['backup_dir']
-            if not os.path.exists(dir):
-                logging.debug(f'Creating backup directory for {device}.')
-                os.mkdir(dir)
+        dir = self.devices[dev_name]['backup_dir']
+        if not os.path.exists(dir):
+            logging.debug(f'Creating backup directory for {device}.')
+            os.mkdir(dir)
+
+    def initial_backup(self, dev_name):
+        backup_dir = self.devices[dev_name]['backup_dir']
+        backup_list = os.listdir(backup_dir)
+        backup_count = len(backup_list)
+        if backup_count < 1:
+            d.get_backup(dev_name)
 
     def get_backup(self, dev_name):
         """Connect to Thingino device and fetch backup file"""
@@ -102,9 +108,9 @@ d = ThinginoDevice()
 if __name__ == '__main__':
     for device in config['devices'].keys():
         d.get_device_configs(device)
+        d.create_dirs(device)
+        d.initial_backup(device)
     
-    d.create_dirs()
-
     if auto_backup_enabled:
         schedule.every().day.at("03:00").do(d.auto_backup)
         schedule.every().day.at("03:30").do(d.auto_delete)
