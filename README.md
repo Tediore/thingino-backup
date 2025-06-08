@@ -1,6 +1,6 @@
 # Thingino auto-backup tool
 
-A simple tool to automatically (or once) fetch configuration backups from your Thingino devices. If auto-backup is enabled, it will run every night at midnight.
+A simple tool to automatically (or once) fetch configuration backups from your Thingino devices. If auto-backup is enabled, it will run every night at 03:00.
 
 <br>
 
